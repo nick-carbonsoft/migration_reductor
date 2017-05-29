@@ -32,7 +32,9 @@ merge_config(){
 	. $config8
 	#shellcheck disable=SC1090
 	. $config7
+    #shellcheck disable=SC2154
 	app['name']='Reductor'
+    #shellcheck disable=SC2154
 	filter['forbidden_log']='0'
 	CONFIG="$config8" save_and_exit
 }
