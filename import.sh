@@ -26,7 +26,7 @@ unpack(){
 }
 
 merge_config(){
-	local config7="$PREFIX/$USERDIR/config"
+	local config7="$USERDIR/config"
 	local config8="/app/reductor/cfg/config"
 	#shellcheck disable=SC1090
 	. $config8
@@ -40,14 +40,14 @@ merge_config(){
 }
 
 decompose(){
-	find "$RAW_ARCHIVE" -name "lists" -exec cp -av {} "$PREFIX/$DATADIR" \;
-	unlink "$PREFIX/$LISTDIR/https.resolv"
-	find "$RAW_ARCHIVE" -name "cache" -exec cp -av {} "$PREFIX/$DATADIR" \;
+	find "$RAW_ARCHIVE" -name "lists" -exec cp -av {} $DATADIR" \;
+	unlink "$LISTDIR/https.resolv"
+	find "$RAW_ARCHIVE" -name "cache" -exec cp -av {} $DATADIR" \;
 	find "$RAW_ARCHIVE" -name "reg" -exec cp -av {} "$PREFIX/var" \;
 	# Директори отличаются, поэтому копируем только содержимое
-	find "$RAW_ARCHIVE" -name "php" -exec cp -av {} "$PREFIX/$DATADIR/rkn/" \;
-	mv "$PREFIX/$DATADIR"/rkn/php/* "$PREFIX/$DATADIR/rkn"
-	rm -rvf "$PREFIX/$DATADIR/rkn/php/"
+	find "$RAW_ARCHIVE" -name "php" -exec cp -av {} "$DATADIR/rkn/" \;
+	mv "$DATADIR"/rkn/php/* "$DATADIR/rkn"
+	rm -rvf "$DATADIR/rkn/php/"
 	find "$RAW_ARCHIVE" -name "userinfo" ! -name "*config" -exec cp -av {} "$PREFIX/cfg" \;
 	find "$RAW_ARCHIVE" -name "network-scripts" -exec cp -av {} "$NETWORK_SCRIPTS" \;
 }
